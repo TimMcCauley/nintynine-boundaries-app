@@ -31,7 +31,7 @@
             Do you have ideas how to make this website more user friendly or
             even how to pimp the overpass queries? Please feel free to raise an
             issue or start an discussion in the
-            <a href={"https://github.com/TimMcCauley/nintynine_boundaries/"}
+            <a href={"https://github.com/TimMcCauley/nintynine-boundaries/"}
                 ><strong><Fa icon={faGithub} /> GitHub repository</strong></a
             >.
         </p>

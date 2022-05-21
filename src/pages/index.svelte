@@ -75,7 +75,7 @@
                             <a
                                 class="button is-dark is-small"
                                 target="_blank"
-                                href={"https://github.com/TimMcCauley/nintynine_boundaries/"}
+                                href={"https://github.com/TimMcCauley/nintynine-boundaries/"}
                             >
                                 <Fa icon={faGithub} />
                                 <span style="padding-left: 5px;"

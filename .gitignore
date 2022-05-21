@@ -1,4 +1,4 @@
 /node_modules/
 /public/build/
-
+.routify/
 .DS_Store
