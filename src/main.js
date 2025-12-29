@@ -1,7 +1,9 @@
-//import "./global.css";
-import HMR from "@roxi/routify/hmr";
+import "./app.css";
+import { mount } from "svelte";
 import App from "./App.svelte";
 
-const app = HMR(App, { target: document.body }, "routify-app");
+const app = mount(App, {
+	target: document.body
+});
 
 export default app;

@@ -1,44 +1,69 @@
 # [99boundaries App](https://99boundaries.com)
 
-A lean Svelte frontend with a few tables written for 99boundaries.
+A modern Svelte 5 frontend application for browsing and filtering geographical boundary data from 99boundaries.
 
-## Get started
+## Features
 
-Install the dependencies...
+- Interactive data table powered by AG Grid
+- Multi-select filters for Parent Country, ISO Code, Admin Level, and Polygon Type
+- Country flags display using flag-icons
+- Responsive design with DaisyUI and Tailwind CSS
+- Download links for GeoJSON and Shapefile formats
+- Direct links to OpenStreetMap relations
+
+## Tech Stack
+
+- **Framework**: Svelte 5
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS v4, DaisyUI
+- **Data Grid**: AG Grid Community
+- **Icons**: Font Awesome, Flag Icons
+- **UI Components**: svelte-select
+
+## Get Started
+
+Install the dependencies:
 
 ```bash
 cd nintynine-boundaries-app
 npm install
 ```
 
-...then start [Rollup](https://rollupjs.org):
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Navigate to [localhost:8080](http://localhost:8080). You should see the app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+Navigate to the URL shown in your terminal (usually [http://localhost:5173](http://localhost:5173)). The app will automatically reload when you save changes to files in the `src` directory.
 
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+## Building for Production
 
-
-## Building and running in production mode
-
-To create an optimised version of the app:
+To create an optimized production build:
 
 ```bash
 npm run build
 ```
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+To preview the production build locally:
 
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
+```bash
+npm run preview
 ```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   └── AgGrid.svelte       # AG Grid wrapper component
+├── index.svelte            # Main application component
+├── App.svelte              # Root component
+├── main.js                 # Application entry point
+├── app.css                 # Global styles
+└── boundaries.json         # Boundary data
+```
+
+## Data Source
+
+Boundaries are generated via [Overpass](http://overpass-api.de/) & [OSM Land Polygons](https://osmdata.openstreetmap.de/data/land-polygons.html) ([© OpenStreetMap contributors](https://www.openstreetmap.org/copyright)) and provided in [EPSG:4326](https://epsg.io/4326).

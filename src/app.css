@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Global font - Open Sans everywhere */
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Fix label text color */
+.label-text {
+    color: black;
+}
+
+/* Fix svelte-select styling for Tailwind v4 / daisyUI */
+.svelte-select {
+    --background: white;
+    --border: 1px solid hsl(var(--bc) / 0.2);
+    --border-radius: 0.5rem;
+    --border-hover: 1px solid hsl(var(--bc) / 0.3);
+    --border-focused: 1px solid hsl(var(--p));
+    --height: 2.5rem;
+    --padding: 0 0.75rem;
+    --input-color: hsl(var(--bc));
+    --list-background: white;
+    --list-border: 1px solid hsl(var(--bc) / 0.2);
+    --item-hover-bg: hsl(var(--b2));
+    --item-is-active-bg: hsl(var(--p) / 0.1);
+    --item-color: hsl(var(--bc));
+    --multi-item-bg: hsl(var(--b2));
+    --multi-item-color: hsl(var(--bc));
+    --multi-item-border: 1px solid hsl(var(--bc) / 0.2);
+    --multi-clear-bg: hsl(var(--er) / 0.1);
+    --multi-clear-fill: hsl(var(--er));
+    --placeholder-color: hsl(var(--bc) / 0.4);
+    --clear-icon-color: hsl(var(--bc) / 0.4);
+    --loading-width: 20px;
+    --spinner-color: hsl(var(--p));
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* AG Grid font */
+.ag-theme-quartz,
+.ag-theme-alpine {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.ag-header-cell-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+.ag-cell {
+    font-family: 'Open Sans', sans-serif;
+}
