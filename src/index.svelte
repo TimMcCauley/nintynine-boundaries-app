@@ -202,7 +202,7 @@
                 </div>
             </div>
 
-            <div class="mb-4">
+            <div class="mb-1">
                 <div>
                     <span>
                         Boundaries are generated via <strong
@@ -230,7 +230,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                 <div class="form-control">
                     <div class="label py-1">
                         <span class="label-text text-sm font-semibold">Parent Country</span>

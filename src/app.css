@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* Force light theme */
+:root {
+    color-scheme: light;
+}
+
+html {
+    color-scheme: light;
+}
+
+html[data-theme] {
+    color-scheme: light;
+}
+
 /* Global font - Open Sans everywhere */
 * {
     font-family: 'Open Sans', sans-serif;
@@ -55,4 +68,83 @@ body {
 
 .ag-cell {
     font-family: 'Open Sans', sans-serif;
+}
+
+/* Responsive font sizes for mobile/tablet */
+@media (max-width: 768px) {
+    /* Hide button text, keep only icons */
+    .btn span {
+        display: none;
+    }
+
+    /* Make selects display in 2x2 grid instead of 1 column */
+    .grid.grid-cols-1 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Reduce font size for svelte-select */
+    .svelte-select {
+        font-size: 0.75rem !important; /* 12px */
+    }
+
+    .svelte-select input {
+        font-size: 0.75rem !important;
+    }
+
+    .svelte-select .list-item {
+        font-size: 0.75rem !important;
+    }
+
+    .svelte-select .item {
+        font-size: 0.75rem !important;
+    }
+
+    .svelte-select .value-container {
+        font-size: 0.75rem !important;
+    }
+
+    .svelte-select .multi-item {
+        font-size: 0.75rem !important;
+    }
+
+    /* Reduce font size for labels */
+    .label,
+    .label-text,
+    label {
+        font-size: 0.75rem !important;
+    }
+
+    /* Reduce font size for description text */
+    span,
+    a {
+        font-size: 0.7rem !important;
+    }
+
+    /* Reduce font size for AG Grid tables */
+    .ag-theme-quartz,
+    .ag-theme-alpine {
+        font-size: 0.75rem; /* 12px */
+    }
+
+    .ag-header-cell-text {
+        font-size: 0.75rem;
+    }
+
+    .ag-cell {
+        font-size: 0.75rem;
+    }
+
+    /* Reduce font size for AG Grid pagination */
+    .ag-paging-panel {
+        font-size: 0.75rem !important;
+    }
+
+    .ag-paging-button,
+    .ag-paging-description,
+    .ag-paging-page-summary-panel,
+    .ag-paging-row-summary-panel {
+        font-size: 0.6rem !important;
+    }
+
+
 }
