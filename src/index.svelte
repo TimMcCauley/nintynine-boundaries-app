@@ -5,15 +5,20 @@
     import { faGithub } from "@fortawesome/free-brands-svg-icons";
     import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
-    import boundariesData from "./boundary_catalog.json";
+    import boundariesDataRaw from "./boundary_catalog.json";
+    import { enhanceBoundaryWithUrls } from "./utils/urlGenerator.js";
     import Select from "svelte-select";
+
+    // Enhance boundary data with generated URLs
+    const boundariesData = boundariesDataRaw.map(enhanceBoundaryWithUrls);
 
     let gridApi = $state();
 
-    const uniqueParents = [...new Set(boundariesData.map(item => item.parent))].sort();
-    const uniqueIsoCodes = [...new Set(boundariesData.map(item => item.iso_code))].sort();
-    const uniqueAdminLevels = [...new Set(boundariesData.map(item => item.admin_level))].sort();
-    const uniquePolygonTypes = [...new Set(boundariesData.map(item => item.polygon_type))].sort();
+    const uniqueParents = [...new Set(boundariesDataRaw.map(item => item.parent))].sort();
+    const uniqueIsoCodes = [...new Set(boundariesDataRaw.map(item => item.iso_code))].sort();
+    const uniqueAdminLevels = [...new Set(boundariesDataRaw.map(item => item.admin_level))].sort();
+    // Map 'l' and 'm' to full names for unique values
+    const uniquePolygonTypes = [...new Set(boundariesDataRaw.map(item => item.type === 'l' ? 'land' : 'maritime'))].sort();
 
     let selectedParents = $state([]);
     let selectedIsoCodes = $state([]);

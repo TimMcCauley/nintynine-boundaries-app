@@ -360,18 +360,16 @@ def scan_output_folder(base_path: str = "misc") -> List[Dict]:
                 # e.g., LU/6/relation_123_folder/relation_123_folder.geojson.zip
 
                 # Generate maritime entry if files exist
+                # Use 'm' for maritime, 'l' for land to save space
                 if has_geojson or has_shp or has_gpkg or has_mapinfo:
                     catalog.append({
                         "parent": parent_country,
                         "iso_code": iso_code,
                         "admin_level": admin_level,
-                        "geojson_dl_link": f"https://files.99boundaries.com/{iso_code}/{admin_level}/{base_name}/{base_name}.geojson.zip" if has_geojson else "",
-                        "shp_dl_link": f"https://files.99boundaries.com/{iso_code}/{admin_level}/{base_name}/{base_name}.shp.zip",
-                        "gpkg_dl_link": f"https://files.99boundaries.com/{iso_code}/{admin_level}/{base_name}/{base_name}.gpkg.zip",
-                        "mapinfo_dl_link": f"https://files.99boundaries.com/{iso_code}/{admin_level}/{base_name}/{base_name}.mapinfo.zip",
                         "name": name,
-                        "osm_relation_link_id": f"https://www.openstreetmap.org/relation/{relation_id}",
-                        "polygon_type": "maritime"
+                        "relation_id": relation_id,
+                        "slug": base_name.replace(f"relation_{relation_id}_", ""),
+                        "type": "m"
                     })
 
                 # Generate land entry if land files exist
@@ -380,13 +378,10 @@ def scan_output_folder(base_path: str = "misc") -> List[Dict]:
                         "parent": parent_country,
                         "iso_code": iso_code,
                         "admin_level": admin_level,
-                        "geojson_dl_link": f"https://files.99boundaries.com/{iso_code}/{admin_level}/{base_name}/{base_name}_land.geojson.zip" if has_land_geojson else "",
-                        "shp_dl_link": f"https://files.99boundaries.com/{iso_code}/{admin_level}/{base_name}/{base_name}_land.shp.zip",
-                        "gpkg_dl_link": f"https://files.99boundaries.com/{iso_code}/{admin_level}/{base_name}/{base_name}_land.gpkg.zip",
-                        "mapinfo_dl_link": f"https://files.99boundaries.com/{iso_code}/{admin_level}/{base_name}/{base_name}_land.mapinfo.zip",
                         "name": name,
-                        "osm_relation_link_id": f"https://www.openstreetmap.org/relation/{relation_id}",
-                        "polygon_type": "land"
+                        "relation_id": relation_id,
+                        "slug": base_name.replace(f"relation_{relation_id}_", ""),
+                        "type": "l"
                     })
 
     return catalog
@@ -409,15 +404,19 @@ def main():
     # Generate catalog
     catalog = scan_output_folder(args.scan_folder)
 
-    # Save to JSON file in the same directory as this script
+    # Save to JSON file in the src directory (optimized for production)
     script_dir = Path(__file__).parent
-    output_file = script_dir / "boundary_catalog.json"
+    src_dir = script_dir.parent / "src"
+    output_file = src_dir / "boundary_catalog.json"
 
+    # Save minimized version (no whitespace) to reduce file size
     with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(catalog, f, indent=4, ensure_ascii=False)
+        json.dump(catalog, f, separators=(',', ':'), ensure_ascii=False)
 
+    import os
+    file_size_mb = os.path.getsize(output_file) / (1024 * 1024)
     print(f"Generated catalog with {len(catalog)} entries")
-    print(f"Saved to {output_file}")
+    print(f"Saved to {output_file} ({file_size_mb:.2f} MB)")
 
 
 if __name__ == "__main__":

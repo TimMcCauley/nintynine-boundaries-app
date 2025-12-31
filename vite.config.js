@@ -17,5 +17,9 @@ export default defineConfig({
   server: {
     port: 5000
   },
-  publicDir: 'public'
+  publicDir: 'public',
+  define: {
+    'import.meta.env.VITE_FILES_BASE_URL': JSON.stringify(process.env.VITE_FILES_BASE_URL || 'https://files.99boundaries.com'),
+    'import.meta.env.VITE_OSM_BASE_URL': JSON.stringify(process.env.VITE_OSM_BASE_URL || 'https://www.openstreetmap.org')
+  }
 });
