@@ -351,7 +351,7 @@ def scan_output_folder(base_path: str = "misc") -> List[Dict]:
                 has_land_geojson = (relation_folder / f"{base_name}_land.geojson.zip").exists()
                 has_land_shp = (relation_folder / f"{base_name}_land.shp.zip").exists()
                 has_land_gpkg = (relation_folder / f"{base_name}_land.gpkg.zip").exists()
-                has_land_mapinfo = (relation_folder / f"{base_name}_land.mapinfo.zip").exists()
+                has_land_mapinfo = (relation_folder / f"{base_name}_land.mapinfofile.zip").exists()
 
                 # URLs mirror the exact directory structure
                 # e.g., LU/6/relation_123_folder/relation_123_folder.geojson.zip
