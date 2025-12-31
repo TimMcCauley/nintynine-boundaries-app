@@ -5,7 +5,7 @@
     import { faGithub } from "@fortawesome/free-brands-svg-icons";
     import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
-    import boundariesData from "./boundaries.json";
+    import boundariesData from "./boundary_catalog.json";
     import Select from "svelte-select";
 
     let gridApi = $state();
