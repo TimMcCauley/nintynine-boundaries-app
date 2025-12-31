@@ -356,9 +356,13 @@ def scan_output_folder(base_path: str = "misc") -> List[Dict]:
                 # URLs mirror the exact directory structure
                 # e.g., LU/6/relation_123_folder/relation_123_folder.geojson.zip
 
-                # Generate maritime entry if files exist
+                # Check what file types exist
+                has_maritime = has_geojson or has_shp or has_gpkg or has_mapinfo
+                has_land = has_land_geojson or has_land_shp or has_land_gpkg or has_land_mapinfo
+
+                # Generate maritime entry if maritime files exist
                 # Use 'm' for maritime, 'l' for land to save space
-                if has_geojson or has_shp or has_gpkg or has_mapinfo:
+                if has_maritime:
                     catalog.append(
                         {
                             "parent": parent_country,
@@ -372,7 +376,7 @@ def scan_output_folder(base_path: str = "misc") -> List[Dict]:
                     )
 
                 # Generate land entry if land files exist
-                if has_land_geojson or has_land_shp or has_land_gpkg or has_land_mapinfo:
+                if has_land:
                     catalog.append(
                         {
                             "parent": parent_country,
