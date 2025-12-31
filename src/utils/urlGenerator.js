@@ -22,9 +22,10 @@ function getBasePath(isoCode, adminLevel, relationId, slug) {
 /**
  * Generate GeoJSON download link
  * @param {Object} boundary - Boundary data object
- * @returns {string} GeoJSON download URL
+ * @returns {string|null} GeoJSON download URL or null if not available
  */
 export function getGeoJsonLink(boundary) {
+    if (!boundary.has_geojson) return null;
     const { iso_code, admin_level, relation_id, slug, type } = boundary;
     const basePath = getBasePath(iso_code, admin_level, relation_id, slug);
     const landSuffix = type === 'l' ? '_land' : '';
@@ -34,9 +35,10 @@ export function getGeoJsonLink(boundary) {
 /**
  * Generate Shapefile download link
  * @param {Object} boundary - Boundary data object
- * @returns {string} Shapefile download URL
+ * @returns {string|null} Shapefile download URL or null if not available
  */
 export function getShpLink(boundary) {
+    if (!boundary.has_shp) return null;
     const { iso_code, admin_level, relation_id, slug, type } = boundary;
     const basePath = getBasePath(iso_code, admin_level, relation_id, slug);
     const landSuffix = type === 'l' ? '_land' : '';
@@ -46,9 +48,10 @@ export function getShpLink(boundary) {
 /**
  * Generate GeoPackage download link
  * @param {Object} boundary - Boundary data object
- * @returns {string} GeoPackage download URL
+ * @returns {string|null} GeoPackage download URL or null if not available
  */
 export function getGpkgLink(boundary) {
+    if (!boundary.has_gpkg) return null;
     const { iso_code, admin_level, relation_id, slug, type } = boundary;
     const basePath = getBasePath(iso_code, admin_level, relation_id, slug);
     const landSuffix = type === 'l' ? '_land' : '';
@@ -58,9 +61,10 @@ export function getGpkgLink(boundary) {
 /**
  * Generate MapInfo download link
  * @param {Object} boundary - Boundary data object
- * @returns {string} MapInfo download URL
+ * @returns {string|null} MapInfo download URL or null if not available
  */
 export function getMapInfoLink(boundary) {
+    if (!boundary.has_mapinfo) return null;
     const { iso_code, admin_level, relation_id, slug, type } = boundary;
     const basePath = getBasePath(iso_code, admin_level, relation_id, slug);
     const landSuffix = type === 'l' ? '_land' : '';

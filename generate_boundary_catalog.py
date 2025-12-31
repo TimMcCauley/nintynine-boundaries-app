@@ -356,13 +356,10 @@ def scan_output_folder(base_path: str = "misc") -> List[Dict]:
                 # URLs mirror the exact directory structure
                 # e.g., LU/6/relation_123_folder/relation_123_folder.geojson.zip
 
-                # Check what file types exist
-                has_maritime = has_geojson or has_shp or has_gpkg or has_mapinfo
-                has_land = has_land_geojson or has_land_shp or has_land_gpkg or has_land_mapinfo
-
                 # Generate maritime entry if maritime files exist
                 # Use 'm' for maritime, 'l' for land to save space
-                if has_maritime:
+                # Store which specific file types are available
+                if has_geojson or has_shp or has_gpkg or has_mapinfo:
                     catalog.append(
                         {
                             "parent": parent_country,
@@ -372,11 +369,15 @@ def scan_output_folder(base_path: str = "misc") -> List[Dict]:
                             "relation_id": relation_id,
                             "slug": base_name.replace(f"relation_{relation_id}_", ""),
                             "type": "m",
+                            "has_geojson": has_geojson,
+                            "has_shp": has_shp,
+                            "has_gpkg": has_gpkg,
+                            "has_mapinfo": has_mapinfo,
                         }
                     )
 
                 # Generate land entry if land files exist
-                if has_land:
+                if has_land_geojson or has_land_shp or has_land_gpkg or has_land_mapinfo:
                     catalog.append(
                         {
                             "parent": parent_country,
@@ -386,6 +387,10 @@ def scan_output_folder(base_path: str = "misc") -> List[Dict]:
                             "relation_id": relation_id,
                             "slug": base_name.replace(f"relation_{relation_id}_", ""),
                             "type": "l",
+                            "has_geojson": has_land_geojson,
+                            "has_shp": has_land_shp,
+                            "has_gpkg": has_land_gpkg,
+                            "has_mapinfo": has_land_mapinfo,
                         }
                     )
 
